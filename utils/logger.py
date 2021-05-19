@@ -75,13 +75,13 @@ def dev(a: logging.Logger, *args, **kwargs):
 
 logging.addLevelName(DEV, "DEV")
 log = logging.getLogger("fairgame")
-log.setLevel(logging.DEBUG)
+log.setLevel(logging.INFO)
 log.dev = MethodType(dev, log)
 
-if version.is_devrelease or version.is_prerelease:
-    LOGLEVEL = logging.DEBUG
-else:
-    LOGLEVEL = os.environ.get("LOGLEVEL", "INFO").upper()
+# if version.is_devrelease or version.is_prerelease:
+#     LOGLEVEL = logging.DEBUG
+# else:
+LOGLEVEL = os.environ.get("LOGLEVEL", "INFO").upper()
 # LOGLEVEL = os.environ.get("LOGLEVEL", "INFO").upper()
 stream_handler = logging.StreamHandler()
 stream_handler.setFormatter(logging.Formatter(FORMAT))
