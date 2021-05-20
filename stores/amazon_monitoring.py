@@ -41,9 +41,9 @@ from utils.misc import (
     get_timestamp_filename,
     save_html_response,
     check_response,
-    UserAgentBook,
-    ItemsHandler,
     BadProxyCollector,
+    ItemsHandler,
+    UserAgentBook,
 )
 
 from common.amazon_support import (

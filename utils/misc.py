@@ -16,16 +16,13 @@
 #
 #      The author may be contacted through the project's GitHub, at:
 #      https://github.com/Hari-Nagarajan/fairgame
-
-import fileinput
-import os
-import json
-import aiohttp
 from typing import Optional, List
-from itertools import cycle
 
 import time
+import os.path
+import json
 from datetime import datetime
+from itertools import cycle
 
 import psutil
 import requests
@@ -34,20 +31,15 @@ from lxml import html
 from selenium import webdriver
 
 from selenium.common.exceptions import (
-    NoSuchElementException,
     TimeoutException,
-    WebDriverException,
 )
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support import expected_conditions as EC, wait
-from selenium.webdriver.support.expected_conditions import staleness_of
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from utils.logger import log
 
-BAD_PROXIES_PATH = "config/bad_proxies.json"
+
 DEFAULT_MAX_TIMEOUT = 5
 
 
@@ -202,7 +194,7 @@ class BadProxyCollector:
 
     @classmethod
     def save(cls):
-        if cls.timer() and cls.collection:
+        if cls.collection:
             with open(BAD_PROXIES_PATH, "w") as f:
                 temp = list(cls.collection)
                 json.dump(temp, f, indent=4)
